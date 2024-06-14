@@ -1,3 +1,5 @@
+### RAPIDKIT -> SUPPORT FROM LARAVEL `11.X`
+
 ## Installation
 
 ```
