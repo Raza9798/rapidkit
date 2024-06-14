@@ -13,7 +13,9 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {},
+    "require": {
+        "spatie/laravel-backup": "*"
+    },
     "extra": {
         "laravel": {
             "providers": [

@@ -13,7 +13,7 @@ class ResourceGeneratorCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'make:module {name} {--path=}';
+    protected $signature = 'rapid:make {name} {--path=}';
 
     /**
      * The console command description.
