@@ -1,0 +1,25 @@
+{
+    "name": "intelrx/rapidkit",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Intelrx\\Rapidkit\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "raza9798",
+            "email": "m.raza9798@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Intelrx\\Rapidkit\\RapidKitProvider"
+            ]
+        }
+    
+    }
+}
