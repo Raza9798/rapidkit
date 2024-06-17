@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Artisan;
 use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\Controller\BackupController;
 use Intelrx\Rapidkit\Controller\TelescopeController;
+use Symfony\Component\Process\Process;
 
 class InitilizeCommand extends Command
 {
@@ -38,5 +39,13 @@ class InitilizeCommand extends Command
         (new BackupController())->configureDatabaseDump();
         (new TelescopeController())->setup();
         Artisan::call("rapid:support");
+
+        $process = new Process(['git', 'commit', '-m', "RapidKit package installed and configured."]);
+        $process->run();
+        if ($process->isSuccessful()) {
+            $this->info('Changes committed successfully!');
+        } else {
+            $this->error('Failed to commit changes.');
+        }
     }
 }

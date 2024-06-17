@@ -3,5 +3,5 @@ namespace Intelrx\Rapidkit\Config;
 
 class Config
 {
-    const VERSION = '1.7.3';
+    const VERSION = '1.7.4';
 }
