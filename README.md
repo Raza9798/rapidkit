@@ -13,9 +13,9 @@ Automatic Package installation and configuration
 > php artisan rapid:install
 ```
 
-Create new module with controller, Model, Migration and view resources. {--path=} is optional.
+Useful command for development
 ```
-> php artisan rapid:make Country --path=Master
+> php artisan rapid:make Country --path=Master   Create separate module resources
 ```
 
 ### # DATABASE BACKUP COMMANDS
