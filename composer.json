@@ -1,6 +1,8 @@
 {
     "name": "intelrx/rapidkit",
     "license": "MIT",
+    "description": "IntelRx/RapidKit is a powerful Laravel package designed to enhance development efficiency by providing essential tools and features for rapid application building. With a focus on simplifying resource creation and modularizing common functionalities, RapidKit streamlines Laravel project workflows. It equips developers with robust capabilities to accelerate development cycles and reduce boilerplate code, ensuring projects are scalable and maintainable. Whether you're starting a new application or improving an existing one, RapidKit facilitates quicker deployment of features, allowing developers to concentrate more on application logic than repetitive tasks. Installable via Composer, RapidKit integrates seamlessly into Laravel projects, offering extensibility through customizable features tailored to project-specific needs. Check out our comprehensive documentation to harness the full potential of IntelRx/RapidKit and join our community in contributing to its ongoing evolution.",
+    "keywords": [ "laravel", "framework", "rapidkit", "intelrx", "laravel-backup", "telescope", "laravel-telescope", "spatie"],
     "autoload": {
         "psr-4": {
             "Intelrx\\Rapidkit\\": "src/"
