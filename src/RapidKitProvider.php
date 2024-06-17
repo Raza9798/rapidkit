@@ -32,9 +32,7 @@ class RapidKitProvider extends ServiceProvider
                 RapidKitSupportCommand::class,
             ]);
 
-            (new Banner())->renderTitle('RapidKit is ready to use!');
-            (new Banner())->line("LARAVEL RAPID KIT " . Config::VERSION);
-            (new Banner())->line("Type 'php artisan rapid:install' to install and configure RapidKit package.");
+            (new Banner())->renderTitle("✅ LARAVEL RAPID KIT " . Config::VERSION . " > php artisan rapid:support");
         }
 
 

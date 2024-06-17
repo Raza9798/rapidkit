@@ -14,7 +14,8 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "spatie/laravel-backup": "*"
+        "spatie/laravel-backup": "*",
+        "laravel/telescope": "*"
     },
     "extra": {
         "laravel": {

@@ -4,9 +4,9 @@ namespace Intelrx\Rapidkit\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Str;
 use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\Controller\BackupController;
+use Intelrx\Rapidkit\Controller\TelescopeController;
 
 class InitilizeCommand extends Command
 {
@@ -36,6 +36,7 @@ class InitilizeCommand extends Command
         ]);
 
         (new BackupController())->configureDatabaseDump();
+        (new TelescopeController())->setup();
         Artisan::call("rapid:support");
     }
 }
