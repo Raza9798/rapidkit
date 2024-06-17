@@ -1,0 +1,6 @@
+'dump' => [
+    'dump_binary_path' => 'C:/xampp/mysql/bin/',  // backup for windows
+    // 'dump_binary_path' => '/usr/bin/',        // backup for ubuntu
+    'use_single_transaction',
+    'timeout' => 60 * 5, // 5 minute timeout
+],

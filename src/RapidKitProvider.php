@@ -2,6 +2,7 @@
 
 namespace Intelrx\Rapidkit;
 
+use App\Console\Commands\RapidKitSupportCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use Intelrx\Rapidkit\Console\Commands\InitilizeCommand;
@@ -26,6 +27,7 @@ class RapidKitProvider extends ServiceProvider
             $this->commands([
                 ResourceGeneratorCommand::class,
                 InitilizeCommand::class,
+                RapidKitSupportCommand::class,
             ]);
         }
     }
