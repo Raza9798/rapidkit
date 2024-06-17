@@ -17,8 +17,9 @@
     "minimum-stability": "dev",
     "require": {
         "php": "^8.2",
+        "laravel/telescope": "*",
         "spatie/laravel-backup": "*",
-        "laravel/telescope": "*"
+        "spatie/laravel-activitylog": "*"
     },
     "extra": {
         "laravel": {

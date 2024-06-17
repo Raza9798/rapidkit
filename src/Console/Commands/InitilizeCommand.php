@@ -5,7 +5,9 @@ namespace Intelrx\Rapidkit\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Intelrx\Rapidkit\assets\Banner;
+use Intelrx\Rapidkit\Controller\ActivityController;
 use Intelrx\Rapidkit\Controller\BackupController;
+use Intelrx\Rapidkit\Controller\BuildController;
 use Intelrx\Rapidkit\Controller\TelescopeController;
 
 class InitilizeCommand extends Command
@@ -30,13 +32,11 @@ class InitilizeCommand extends Command
     public function handle()
     {
         (new Banner())->renderTitle('Installing and configuring RapidKit package...');
-       
-        Artisan::call("vendor:publish", [
-            "--provider" => "Spatie\Backup\BackupServiceProvider"
-        ]);
-
+        (new BackupController())->setup();
         (new BackupController())->configureDatabaseDump();
         (new TelescopeController())->setup();
+        (new ActivityController())->setup();
+        (new BuildController());
         Artisan::call("rapid:support");
     }
 }

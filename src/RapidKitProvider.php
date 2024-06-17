@@ -34,7 +34,5 @@ class RapidKitProvider extends ServiceProvider
 
             (new Banner())->renderTitle("✅ LARAVEL RAPID KIT " . Config::VERSION . " > php artisan rapid:support");
         }
-
-
     }
 }

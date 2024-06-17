@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Traits;
+
+use Carbon\Carbon;
+use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
+use Spatie\Activitylog\Contracts\Activity;
+use Illuminate\Support\Facades\Auth;
+use Spatie\Activitylog\Models\Activity as ModelsActivity;
+use App\Http\Controllers\Controller;
+
+trait HasActivityLog
+{
+    use LogsActivity;
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()->logOnly(['*'])->logOnlyDirty();
+    }
+
+    /**
+     * activity logging description, causer name, and log name.
+     *
+     * @param String $activity_module
+     * @param String $activity_column
+     * @return void activityInfo ["activity_column" => ..., "activity_description" => ...];  
+     * 
+     */
+    public function tapActivity(Activity $activity,  $eventName)
+    {
+        try {
+            if (method_exists($this, 'activityInfo')) {
+                $info = $this->activityInfo();
+                $info["class"] = get_class($this);
+                $info["description"] = $info["activity_description"];
+            }
+
+            $user_name = Auth::user()->name ?? "GUST";
+            $data = $activity->subject[$this->activity_column];
+
+            switch ($eventName) {
+                case 'created':
+                    $data = $activity->properties["attributes"][$this->activity_column];
+                    break;
+                
+                case 'updated':
+                    if (isset($activity->properties['old'][$this->activity_column])) {
+                        $new_data = $activity->properties['attributes'][$this->activity_column] ?? 'NULL';
+                        $data = $activity->properties['old'][$this->activity_column] ." to ". $new_data;
+                    }
+                    break;
+                
+                default:
+                    $data = $activity->properties['old'][$this->activity_column] ?? $data;
+                    break;
+            }
+            $activity->description   = "$user_name has $eventName " . ($info["description"] ?? " $data ") . " on $this->activity_module";
+            $activity->causer_name   = $user_name;
+            $activity->log_name      = $this->activity_module;
+        } 
+        catch (\Exception $e) { 
+            throw $e; 
+        }
+    }
+
+    /**
+     * Loads the audit data for a given ID.
+     *
+     * @param int $id The ID of the subject.
+     * @return Illuminate\Support\Collection The transformed audit data.
+     */
+    public function getAudit(int $id){
+        try{
+            $data = ModelsActivity::orderby('id', 'desc')->where(function ($query) use ($id) {
+                $query->where('subject_id', $id);
+                $query->where('log_name',   $this->activity_module);
+            })->get();
+    
+            return collect($data->toArray())->transform(function($item){
+                $carbon_format = 'Y-m-d h:i A';
+                foreach (["attributes", "old"] as $key => $value) {
+                    if (isset($item["properties"][$value]['updated_at'])) {
+                        $item["properties"][$value]["updated_at"] = Carbon::parse($item["properties"][$value]["updated_at"])->format($carbon_format);
+                    }
+                    if (isset($item["properties"][$value]['created_at'])) {
+                        $item["properties"][$value]["created_at"] = Carbon::parse($item["properties"][$value]["created_at"])->format($carbon_format);
+                    }
+                }
+                $item["created_at"] = Carbon::parse($item["created_at"])->format($carbon_format);
+                $item["updated_at"] = Carbon::parse($item["updated_at"])->format($carbon_format);
+                $item["log_name"]    = $this->activity_module;
+                $item["module_name"] = $this->activity_module;
+                return $item;
+            });
+        }
+        catch (\Exception $e) { 
+           throw $e; 
+        }
+    }
+}
