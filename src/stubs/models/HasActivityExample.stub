@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use App\Traits\HasActivityLog;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class HasActivityExample extends Model
+{
+    use HasFactory, HasActivityLog;
+
+    public $activity_module = 'HasActivityExample';
+    public $activity_column = 'name';
+
+    protected $fillable = ['name', 'email', 'payment_method', 'amount'];
+
+    /**
+     * ACTIVITY LOG DESCRIPTION FOR THIS MODEL
+     */
+    public function activityInfo(){
+        return [
+            "activity_column" => $this->name,
+            "activity_description" => "{$this->payment_method} of {$this->amount} rupees"
+        ];
+    }
+}

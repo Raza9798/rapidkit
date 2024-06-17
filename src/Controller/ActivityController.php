@@ -12,6 +12,7 @@ class ActivityController extends Controller
         $this->createTraitsDirectory();
         $this->createActivityLogTrait();
         $this->publishActivityLogAssets();
+        $this->createExampleModel();
         $this->runActivityLoggerMigrations();
         
     }
@@ -35,6 +36,18 @@ class ActivityController extends Controller
         }
         else{
             (new Banner())->warn('HasActivityLog trait already exists');
+        }
+    }
+
+    protected function createExampleModel(){
+        $stubPath = dirname(__DIR__, 2) . '/src/stubs/models/HasActivityExample.stub';
+        $modelPath = app_path('Models/HasActivityExample.php');
+        $stubContent = File::get($stubPath);
+        if (!File::exists($modelPath)) {
+            File::put($modelPath, $stubContent);
+        }
+        else{
+            (new Banner())->warn('HasActivityExample already exists');
         }
     }
 
