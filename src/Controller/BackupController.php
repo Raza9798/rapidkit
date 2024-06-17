@@ -30,8 +30,6 @@ class BackupController extends Controller
             } else {
                 (new Banner())->error('Failed to update config file');
             }
-        } else {
-            (new Banner())->error('Configuration already exsists');
-        }
+        } 
     }
 }
