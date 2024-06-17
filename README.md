@@ -27,3 +27,13 @@ Useful command for development
  > backup:run --only-db       Only Database backup
  > backup:run --only-files    FileSystem backup
 ```
+
+### # TELESCOPE COMMANDS
+```
+  > telescope:clear               Delete all Telescope data from storage
+  > telescope:pause               Pause all Telescope watchers
+  > telescope:prune               Prune stale entries from the Telescope database
+  > telescope:prune --hours=48    Prune stale entries by time
+  > telescope:publish             Publish all of the Telescope resources
+  > telescope:resume              Unpause all Telescope watchers
+```
