@@ -36,7 +36,7 @@ trait HasActivityLog
                 $info["description"] = $info["activity_description"];
             }
 
-            $user_name = Auth::user()->name ?? "GUST";
+            $user_name = Auth::user()->name ?? "SYSTEM";
             $data = $activity->subject[$this->activity_column];
 
             switch ($eventName) {
@@ -56,7 +56,6 @@ trait HasActivityLog
                     break;
             }
             $activity->description   = "$user_name has $eventName " . ($info["description"] ?? " $data ") . " on $this->activity_module";
-            $activity->causer_name   = $user_name;
             $activity->log_name      = $this->activity_module;
         } 
         catch (\Exception $e) { 

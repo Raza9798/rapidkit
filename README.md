@@ -10,7 +10,7 @@ composer require intelrx/rapidkit
 
 Automatic Package installation and configuration
 ```
-> php artisan rapid:install
+php artisan rapid:install
 ```
 
 Useful command for development
