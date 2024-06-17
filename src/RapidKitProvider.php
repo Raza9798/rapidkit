@@ -2,11 +2,11 @@
 
 namespace Intelrx\Rapidkit;
 
-use App\Console\Commands\RapidKitSupportCommand;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\ServiceProvider;
 use Intelrx\Rapidkit\Console\Commands\InitilizeCommand;
 use Intelrx\Rapidkit\Console\Commands\ResourceGeneratorCommand;
+use Intelrx\Rapidkit\Console\Commands\RapidKitSupportCommand;
 
 class RapidKitProvider extends ServiceProvider
 {
@@ -29,6 +29,10 @@ class RapidKitProvider extends ServiceProvider
                 InitilizeCommand::class,
                 RapidKitSupportCommand::class,
             ]);
+
+            Artisan::call("rapid:install");
         }
+
+
     }
 }

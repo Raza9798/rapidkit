@@ -36,6 +36,6 @@ class InitilizeCommand extends Command
         ]);
 
         (new BackupController())->configureDatabaseDump();
-
+        Artisan::call("rapid:support");
     }
 }

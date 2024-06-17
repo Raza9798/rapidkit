@@ -1,8 +1,11 @@
 <?php
 
-namespace App\Console\Commands;
+namespace Intelrx\Rapidkit\Console\Commands;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Artisan;
+use Intelrx\Rapidkit\assets\Banner;
+use Intelrx\Rapidkit\Config\Config;
 
 class RapidKitSupportCommand extends Command
 {
@@ -25,6 +28,12 @@ class RapidKitSupportCommand extends Command
      */
     public function handle()
     {
-        $this->info('Welcome to Laravel Rapid Kit Support!');
+        (new Banner())->renderTitle('Welcome to Laravel Rapid Kit Support!');
+        (new Banner())->line("LARAVEL RAPID KIT " . Config::VERSION);
+        
+        Artisan::call('list rapid');
+        $output = Artisan::output();
+        (new Banner())->log($output);
+
     }
 }

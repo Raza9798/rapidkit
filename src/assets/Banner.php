@@ -15,8 +15,18 @@ class Banner
         fwrite(STDERR, "\e[32m$message\e[0m\n");
     }
 
+    public function warn($message)
+    {
+        fwrite(STDERR, "\e[33m$message\e[0m\n");
+    }
+
     public function error($message)
     {
         fwrite(STDERR, "\e[31m$message\e[0m\n");
+    }
+
+    public function line($message)
+    {
+        fwrite(STDERR, "$message\n");
     }
 }
