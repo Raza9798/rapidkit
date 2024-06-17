@@ -32,11 +32,11 @@ class InitilizeCommand extends Command
     public function handle()
     {
         (new Banner())->renderTitle('Installing and configuring RapidKit package...');
-        (new BackupController())->setup();
-        (new BackupController())->configureDatabaseDump();
-        (new TelescopeController())->setup();
-        (new ActivityController())->setup();
+        // (new BackupController())->setup();
+        // (new BackupController())->configureDatabaseDump();
+        // (new TelescopeController())->setup();
+        // (new ActivityController())->setup();
         (new BuildController());
-        Artisan::call("rapid:support");
+        // Artisan::call("rapid:support");
     }
 }
