@@ -22,7 +22,7 @@
         "spatie/laravel-activitylog": "*"
     },
     "require-dev": {
-        "intelrx/intelmail": "*"
+        "rapidrx/intelmail": "*"
     },
     "extra": {
         "laravel": {
