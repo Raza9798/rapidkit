@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
+use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\assets\Helper;
 use Intelrx\Rapidkit\Config\Config;
 use ZipArchive;
@@ -62,48 +63,9 @@ class BuildController extends Controller
             $this->addFolderToZip($files[0], $zip, strlen(dirname($files[0])) + 1);
             $zip->close();
         } else {
-            // If unable to open the zip file, return an error message
+            (new Banner())->warn('Unable to open the zip file');
         }
-        // $this->sendEmail();
     }
-
-    // protected function sendEmail()
-    // {
-    //     $filePath = storage_path('app/public/file.txt'); 
-    //     $headers = [
-    //         'Authorization' => 'Bearer 872f750da9a0d3a17c0f28b41b653835',
-    //         'Content-Type' => 'application/json',
-    //     ];
-    //     $fileContent = base64_encode(file_get_contents($filePath));
-    //     $payload = [
-    //         'from' => [
-    //             'email' => 'mailtrap@demomailtrap.com',
-    //             'name' => 'Mailtrap Test'
-    //         ],
-    //         'to' => [
-    //             ['email' => 'jrazavistag@gmail.com']
-    //         ],
-    //         'subject' => 'TEST',
-    //         // 'text' => 'CHECK',
-    //         // 'html' => view('welcome')->render(), 
-    //         'category' => 'TTTT',
-    //         'attachments' => [
-    //             [
-    //                 'content' => $fileContent,
-    //                 'filename' => 'filfffe.txt', 
-    //                 'type' => mime_content_type($filePath),
-    //             ]
-    //         ]
-    //     ];
- 
-    //     $response = Http::withHeaders($headers)
-    //         ->post('https://send.api.mailtrap.io/api/send', $payload);
-    //     if ($response->successful()) {
-    //         echo "Email sent successfully!";
-    //     } else {
-    //         echo "Failed to send email: " . $response->body();
-    //     }
-    // }
 
     private function addFolderToZip($folder, &$zip, $exclusiveLength)
     {
