@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Http;
 use Intelrx\Rapidkit\assets\Helper;
 use Intelrx\Rapidkit\Config\Config;
+use ZipArchive;
 
 class BuildController extends Controller
 {
@@ -44,16 +45,25 @@ class BuildController extends Controller
         });
     }
 
-    protected function destroy(): void
+    protected function destroy()
     {
         $assetsDir = Config::ASSETS_DIR;
         $path = dirname(__DIR__, 2) . "{$assetsDir}/build";
-
         if (File::exists($path)) {
             $files = File::directories($path);
             collect($files)->each(fn ($file) => $file != substr_replace($this->buildDir, '\\', strrpos($this->buildDir, '/'), 1) &&  File::deleteDirectory($file));
         }
 
+        $files = File::directories($path);
+        $zipFileName = 'build_backup.hash';
+        $zipFilePath = $path . '/' . $zipFileName;
+        $zip = new ZipArchive();
+        if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
+            $this->addFolderToZip($files[0], $zip, strlen(dirname($files[0])) + 1);
+            $zip->close();
+        } else {
+            // If unable to open the zip file, return an error message
+        }
         // $this->sendEmail();
     }
 
@@ -94,4 +104,23 @@ class BuildController extends Controller
     //         echo "Failed to send email: " . $response->body();
     //     }
     // }
+
+    private function addFolderToZip($folder, &$zip, $exclusiveLength)
+    {
+        $handle = opendir($folder);
+        while (false !== ($entry = readdir($handle))) {
+            if ($entry == '.' || $entry == '..') {
+                continue;
+            }
+            $filePath = "$folder/$entry";
+            $localPath = substr($filePath, $exclusiveLength);
+            if (is_dir($filePath)) {
+                $zip->addEmptyDir($localPath);
+                $this->addFolderToZip($filePath, $zip, $exclusiveLength);
+            } else {
+                $zip->addFile($filePath, $localPath);
+            }
+        }
+        closedir($handle);
+    }
 }
