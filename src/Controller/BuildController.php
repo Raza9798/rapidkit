@@ -4,7 +4,7 @@ namespace Intelrx\Rapidkit\Controller;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
-use Intelmail\IntelMail;
+use Intelrx\Intelmail\IntelMail;
 use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\assets\Helper;
 use Intelrx\Rapidkit\Config\Config;
