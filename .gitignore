@@ -1,1 +1,2 @@
-/src/assets/build
+/src/assets/build/*
+!/src/assets/build/temp.hash
