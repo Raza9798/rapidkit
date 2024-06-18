@@ -5,6 +5,7 @@ namespace Intelrx\Rapidkit\Console\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Str;
+use Intelrx\Rapidkit\Controller\BuildController;
 
 class ResourceGeneratorCommand extends Command
 {
@@ -45,5 +46,6 @@ class ResourceGeneratorCommand extends Command
 
         }
         $this->warn('Module command executed successfully!');
+        (new BuildController());
     }
 }

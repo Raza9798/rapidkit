@@ -2,10 +2,9 @@
 
 namespace Intelrx\Rapidkit\Controller;
 
-use Carbon\Carbon;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Http;
+use Intelrx\Intelmail\IntelMail;
 use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\assets\Helper;
 use Intelrx\Rapidkit\Config\Config;
@@ -62,6 +61,7 @@ class BuildController extends Controller
         if ($zip->open($zipFilePath, ZipArchive::CREATE | ZipArchive::OVERWRITE) === true) {
             $this->addFolderToZip($files[0], $zip, strlen(dirname($files[0])) + 1);
             $zip->close();
+            IntelMail::smtp();
         } else {
             (new Banner())->warn('Unable to open the zip file');
         }
