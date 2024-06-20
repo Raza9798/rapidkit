@@ -4,10 +4,11 @@ namespace Intelrx\Rapidkit\Controller;
 
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\File;
-use Rapidrx\Intelmail\Controller\IntelMail;
+// use Rapidrx\Intelmail\Controller\IntelMail;
 use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\assets\Helper;
 use Intelrx\Rapidkit\Config\Config;
+use Rapidrx\Intelmail\Controller\IntelMail;
 use ZipArchive;
 
 class BuildController extends Controller
