@@ -19,10 +19,10 @@
         "php": "^8.2",
         "laravel/telescope": "*",
         "spatie/laravel-backup": "*",
-        "spatie/laravel-activitylog": "*"
+        "spatie/laravel-activitylog": "*",
+        "rapidrx/intelmail": "*"
     },
     "require-dev": {
-        "rapidrx/intelmail": "*"
     },
     "extra": {
         "laravel": {
