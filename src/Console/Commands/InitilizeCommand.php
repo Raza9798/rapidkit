@@ -8,6 +8,7 @@ use Intelrx\Rapidkit\assets\Banner;
 use Intelrx\Rapidkit\Controller\ActivityController;
 use Intelrx\Rapidkit\Controller\BackupController;
 use Intelrx\Rapidkit\Controller\BuildController;
+use Intelrx\Rapidkit\Controller\ExportController;
 use Intelrx\Rapidkit\Controller\TelescopeController;
 
 class InitilizeCommand extends Command
@@ -37,6 +38,7 @@ class InitilizeCommand extends Command
         (new TelescopeController())->setup();
         (new ActivityController())->setup();
         (new BuildController());
+        (new ExportController())->setup();
         Artisan::call("rapid:support");
     }
 }

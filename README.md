@@ -37,3 +37,9 @@ Useful command for development
   > telescope:publish             Publish all of the Telescope resources
   > telescope:resume              Unpause all Telescope watchers
 ```
+
+### # EXPORT & IMPORT COMMANDS
+```
+  > php artisan make:import UsersImport --model=User
+  > php artisan make:export UsersExport --model=User
+```

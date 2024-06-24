@@ -20,7 +20,8 @@
         "laravel/telescope": "*",
         "spatie/laravel-backup": "*",
         "spatie/laravel-activitylog": "*",
-        "rapidrx/intelmail": "*"
+        "rapidrx/intelmail": "*",
+        "maatwebsite/excel": "*"
     },
     "require-dev": {
     },

@@ -4,7 +4,7 @@ use Carbon\Carbon;
 
 class Config
 {
-    const VERSION = '1.8.17';
+    const VERSION = '1.9.0';
     const ASSETS_DIR = "/src/assets";
 
     public static function getBuildDir($levels): string
