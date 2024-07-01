@@ -38,7 +38,7 @@ Useful command for development
   > php artisan telescope:resume              Unpause all Telescope watchers
 ```
 
-### # EXPORT & IMPORT COMMANDS
+### # EXPORT & IMPORT EXCEL COMMANDS
 ```
   > php artisan make:import UsersImport --model=User
   > php artisan make:export UsersExport --model=User
