@@ -1,5 +1,14 @@
 ### RAPIDKIT -> SUPPORT FROM LARAVEL `11.X`
 
+RAPIDKIT for Laravel is a collection of pre-built functionalities designed to accelerate web application development. It offers a robust set of commands to modularize projects, enabling developers to create highly customizable applications swiftly.
+
+## # Key Features
+
+- **Modular Structure:** Easily modularize your Laravel projects for better organization and scalability.
+- **Pre-built Functionalities:** Includes a rich set of pre-built features to jumpstart development.
+- **Customizability:** Allows for extensive customization to fit specific project requirements.
+- **Rapid Development:** Speeds up the development process by providing ready-to-use components and utilities.
+
 ### # Installation
 
 ```
