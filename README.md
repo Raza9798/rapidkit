@@ -52,3 +52,14 @@ Useful command for development
   > php artisan make:import UsersImport --model=User
   > php artisan make:export UsersExport --model=User
 ```
+
+### # RUN TEST
+```
+  <testsuites>
+        ... phpunit.xml
+        
+      <testsuite name="Rapidkit">
+          <directory>./vendor/intelrx/rapidkit/tests/Unit</directory>
+      </testsuite>
+  </testsuites>
+```
